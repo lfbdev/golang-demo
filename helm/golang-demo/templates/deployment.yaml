@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: golang-demo
+  labels:
+    app: golang-demo
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: golang-demo
+  template:
+    metadata:
+      labels:
+        app: golang-demo
+    spec:
+      containers:
+      - name: golang-demo
+        image: "ironcore864/golang-demo:{{ .Chart.AppVersion }}"
+        ports:
+        - containerPort: 8080
